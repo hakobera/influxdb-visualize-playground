@@ -1,0 +1,20 @@
+---
+- name: donwload grafana package
+  get_url: url=https://github.com/grafana/grafana/archive/v1.6.1.tar.gz dest=/tmp/grafana-v1.6.1.tar.gz
+
+- name: extract grafana
+  shell: tar xf /tmp/grafana-v1.6.1.tar.gz chdir=/usr/share/nginx creates=/usr/share/nginx/grafana
+
+- name: create symlink
+  file: src=/usr/share/nginx/grafana-1.6.1/src dest=/usr/share/nginx/grafana owner=root group=root state=link
+
+- name: create config for grafana
+  copy: src=config.js dest=/usr/share/nginx/grafana/config.js owner=root group=root mode=0644
+  notify: restart nginx
+
+- name: create grafana.conf for nginx
+  copy: src=nginx.conf dest=/etc/nginx/sites-available/default owner=root group=root mode=0644
+  notify: restart nginx
+
+- name: nginx is running and enabled
+  service: name=nginx state=running enabled=yes

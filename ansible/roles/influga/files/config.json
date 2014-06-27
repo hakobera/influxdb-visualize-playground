@@ -1,0 +1,8 @@
+{
+  "dashboardDbPath": "/etc/influga/influga.db",
+  "host": "127.0.0.1",
+  "port": 8086,
+  "database": "playground",
+  "username": "root",
+  "password": "root"
+}

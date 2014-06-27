@@ -1,0 +1,21 @@
+---
+- name: install common packages
+  apt: name={{ item }} update_cache=yes state=present
+  with_items:
+    - wget
+    - curl
+    - build-essential
+    - supervisor
+    - nginx
+    - nodejs
+    - nodejs-legacy
+    - npm
+
+- name: install latest version of "openjdk-7-jdk"
+  apt: name=openjdk-7-jdk state=latest install_recommends=no
+
+- name: create supervisor config
+  copy: src=supervisord.conf dest=/etc/supervisor/supervisord.conf owner=root group=root mode=0644
+
+- name: supervisor is running and enabled
+  service: name=supervisor state=running enabled=yes

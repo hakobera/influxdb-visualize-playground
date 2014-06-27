@@ -1,0 +1,8 @@
+- name: download InfluxDB package
+  get_url: url=http://s3.amazonaws.com/influxdb/influxdb_latest_amd64.deb dest=/tmp/influxdb_latest_amd64.deb
+
+- name: install InfluxDB
+  apt: deb=/tmp/influxdb_latest_amd64.deb state=installed
+
+- name: InfluxDB is running and enabled
+  service: name=influxdb state=running enabled=yes

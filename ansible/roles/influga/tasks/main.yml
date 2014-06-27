@@ -1,0 +1,13 @@
+---
+- name: install influga
+  npm: name=influga global=yes state=latest
+
+- name: create influga supervisord config
+  copy: src=influga.conf dest=/etc/supervisor/conf.d/influga.conf
+  notify: restart supervisor
+
+- name: create influga config folder
+  file: path=/etc/influga state=directory owner=root group=root
+
+- name: create influga config file
+  copy: src=config.json dest=/etc/influga/config.json owner=root group=root mode=0644
