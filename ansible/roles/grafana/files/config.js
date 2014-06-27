@@ -17,7 +17,7 @@ function (Settings) {
     // elasticsearch url
     // used for storing and loading dashboards, optional
     // For Basic authentication use: http://username:password@domain.com:9200
-    elasticsearch: "http://"+window.location.hostname+":80",
+    elasticsearch: "http://"+window.location.hostname,
 
     // default start dashboard
     default_route: '/dashboard/file/default.json',

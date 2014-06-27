@@ -3,6 +3,8 @@ require 'spec_helper'
 describe file('/etc/nginx/sites-available/default') do
   it { should be_file }
   its(:content) {
+    should match %r{listen \*:80}
+    should match %r{server_name 192.168.77.22}
     should match %r{root /usr/share/nginx/grafana}
     should match %r{proxy_pass http://127.0.0.1:9200}
   }
