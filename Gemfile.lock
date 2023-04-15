@@ -21,7 +21,7 @@ GEM
       yajl-ruby (~> 1.0)
     highline (1.6.21)
     http_parser.rb (0.6.0)
-    json (1.8.1)
+    json (2.6.3)
     msgpack (0.5.8)
     net-ssh (2.9.1)
     rspec (2.99.0)
